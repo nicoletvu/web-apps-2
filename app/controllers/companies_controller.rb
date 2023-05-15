@@ -7,6 +7,7 @@ class CompaniesController < ApplicationController
   def show
     # find a Company
    @company = Company.find_by({"id" => params["id"]})
+   @contacts = Contact.where({"company_id" => @company["id"]})
    # render companies/show view with details about Company
    # render :template => "companies/show"
    # the above is done automatically as long as names match
@@ -15,6 +16,7 @@ class CompaniesController < ApplicationController
   def new
   # render view with new Company form
     @company = Company.new
+    @contacts = Contact.new
   end
   
   def create
